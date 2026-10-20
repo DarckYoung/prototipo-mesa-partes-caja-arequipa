@@ -26,3 +26,19 @@ def buscar_expediente(codigos, dnis, nombres, tipos, montos, prioridades, estado
             encontrado = True
     if not encontrado:
         print(f"[AVISO] No se encontro ningun expediente para: {criterio}")
+
+def intercambiar_registros(codigos, dnis, nombres, tipos, montos, prioridades, estados, i, j):
+    codigos[i], codigos[j] = codigos[j], codigos[i]
+    dnis[i], dnis[j] = dnis[j], dnis[i]
+    nombres[i], nombres[j] = nombres[j], nombres[i]
+    tipos[i], tipos[j] = tipos[j], tipos[i]
+    montos[i], montos[j] = montos[j], montos[i]
+    prioridades[i], prioridades[j] = prioridades[j], prioridades[i]
+    estados[i], estados[j] = estados[j], estados[i]
+
+def ordenar_burbuja(codigos, dnis, nombres, tipos, montos, prioridades, estados, modo):
+    n = len(codigos)
+    for i in range(n - 1):
+        for j in range(n - 1 - i):
+            if (modo == 1 and prioridades[j] > prioridades[j + 1]) or (modo == 2 and nombres[j] > nombres[j + 1]):
+                intercambiar_registros(codigos, dnis, nombres, tipos, montos, prioridades, estados, j, j + 1)
